@@ -27,6 +27,22 @@ CREATE OR REPLACE PACKAGE BODY BOARD_PQ01 IS
         --cleans the board(everytime the game is initialized)
         UPDATE BOARD SET A=' ',B=' ',C=' ', D=' ', E=' ', F=' ', G=' ', H=' ';
     END CLEAN_BOARD;
+    
+    
+    --jcanales 11/17/2021 (prints table)
+    PROCEDURE PRINT_TABLE IS
+        
+        CURSOR BOARD IS SELECT FILA,A,B,C,D,E,F,G,H FROM BOARD;
+    BEGIN
+    
+        FOR X IN BOARD LOOP
+              DBMS_OUTPUT.PUT_LINE('---------------------------------');
+              DBMS_OUTPUT.PUT_LINE('| '||X.A||' | '||X.B||' | '||X.C||' | '||X.D||' | '||X.E||' | '||X.F||' | '||X.G||' | '||X.H||' | '||X.FILA);
+        END LOOP;
+    DBMS_OUTPUT.PUT_LINE('---------------------------------');
+    DBMS_OUTPUT.PUT_LINE('--A---B---C---D---E---F---G---H--');
+    END PRINT_TABLE;
+
 
 
 END BOARD_PQ01;
