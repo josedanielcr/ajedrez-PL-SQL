@@ -2,6 +2,9 @@ CREATE OR REPLACE PACKAGE MAIN IS
 
     --jcanales 11/13/2021 (Start new game by asking for players names)
     PROCEDURE START_GAME_PLAYERS(P_NAME1 VARCHAR2, P_NAME2 VARCHAR2);
+    
+    --jcanales 11/23/2021 (moves a piece of chess)
+    PROCEDURE MOVE_CHESS_PIECE(P_CORD_SOURCE VARCHAR2, P_CORD_TARGET VARCHAR2);
 
 END MAIN;
 /

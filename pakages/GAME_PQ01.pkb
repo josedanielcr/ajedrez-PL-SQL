@@ -79,6 +79,49 @@ CREATE OR REPLACE PACKAGE BODY GAME_PQ01 IS
                  DBMS_OUTPUT.PUT_LINE('FALTA ALGUIEN LOL');
     
     END SELECT_PLAYER_TURN;
+    
+    
+    --jcanales 11/23/2021 (ends game)
+    PROCEDURE END_GAME IS
+    
+        V_WINNER CHESS.PLAYERS%ROWTYPE;
+    
+    BEGIN
+        SELECT ID ,NAME ,VICTORIES ,STATUS ,IS_TURN  INTO V_WINNER FROM PLAYERS WHERE STATUS = 'Y_PLAYING' AND IS_TURN = 1;
+        DBMS_OUTPUT.PUT_LINE('------------------------------');
+        DBMS_OUTPUT.PUT_LINE('JAQUE MATE!!! el jugador: '||V_WINNER.NAME||' se lleva la victoria');
+        DBMS_OUTPUT.PUT_LINE('------------------------------');
+        
+        --adds a win
+        PLAYER_PQ01.ADD_WIN(V_WINNER.ID);
+        
+        --changes game flag
+        GAME_FLAGS_PQ01.UPD_FLAG_STATUS('STARTED','N');
+    
+        --cleans the board
+        BOARD_PQ01.CLEAN_BOARD;
+    
+    END END_GAME;
+    
+    --jcanales 11/23/2021 (start process to move a piece)
+    PROCEDURE MOVE_PIECE(P_CORD_SOURCE VARCHAR2, P_CORD_TARGET VARCHAR2) IS
+    
+        V_SOURCE_ROW    VARCHAR2(1);
+        V_SOURCE_COLUMN VARCHAR2(1);
+        V_TARGET_ROW    VARCHAR2(1);
+        V_TARGET_COLUMN VARCHAR2(1);
+    
+    BEGIN
+    
+        --gets the separate cords
+        SELECT SUBSTR(P_CORD_SOURCE,1,1) INTO V_SOURCE_COLUMN FROM DUAL;
+        SELECT SUBSTR(P_CORD_SOURCE,2,1) INTO V_SOURCE_ROW FROM DUAL;
+        SELECT SUBSTR(P_CORD_TARGET,1,1) INTO V_TARGET_COLUMN FROM DUAL;
+        SELECT SUBSTR(P_CORD_TARGET,2,1) INTO V_TARGET_ROW FROM DUAL;
+        
+        
+    
+    END MOVE_PIECE;
 
 END GAME_PQ01;
 /
