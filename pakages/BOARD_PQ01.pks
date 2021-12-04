@@ -1,5 +1,5 @@
 CREATE OR REPLACE PACKAGE BOARD_PQ01 IS
-
+    
     --jcanales 11/14/2021 (Fills the board with all the pieces)
     PROCEDURE INIT_BOARD;
     
