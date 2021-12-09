@@ -1,0 +1,22 @@
+--DZR
+CREATE TABLE PIECES_STATUS(
+    CORD VARCHAR2(2),
+    PIEZA VARCHAR2(1),
+    STATUS VARCHAR2(1) DEFAULT 'F'
+);
+
+--PARA REINICIAR LUEGO DE UNA PARTIDA
+UPDATE PIECES_STATUS
+    SET STATUS = 'F'
+    WHERE STATUS IN ('F','T','D');
+
+
+/*UPDATE PIECES_STATUS
+    SET STATUS = 'D'
+    WHERE CORD like 'A2';*/
+
+--STATUS 'F'significa que no se ha movido
+--STATUS 'T' significa que se movió 
+--STATUS 'D' significa que la ficha fue derrotada
+
+--DROP TABLE PIECES_STATUS

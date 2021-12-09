@@ -1,0 +1,66 @@
+PROCEDURE GAME_DEVELOPMENT(P_NAME1 VARCHAR2, P_NAME2 VARCHAR2, P_STARTER_PLAYER VARCHAR2, P_SECOND_PLAYER VARCHAR2) IS
+    GAME_END BOOLEAN := false;
+    V_CORD_SOURCE VARCHAR2(2);
+    V_CORD_TARGET VARCHAR2(2);
+
+    V_SOURCE_ROW    VARCHAR2(1);
+    V_SOURCE_COLUMN VARCHAR2(1);
+    V_TARGET_ROW    VARCHAR2(1);
+    V_TARGET_COLUMN VARCHAR2(1);
+    V_SOURCE_VALUE VARCHAR2(1);
+    V_TARGET_VALUE VARCHAR2(1);
+
+    --variables para intercambiar turnos
+    V_PLAYER_AUX VARCHAR2(50);
+    --variable para saber el jugador actual: 1 (MAYUS) - 2 (minus)
+    V_ACT_PLAYER NUMBER := 1;
+    V_CONTADOR := 1;
+
+BEGIN
+    	
+    WHILE GAME_END = false THEN
+	V_CORD_SOURCE := '&ORIGEN';
+    	V_CORD_TARGET := '&DESTINO';
+
+	//VERIFICAR SI ES JUGADOR 1 MAYUS O JUGADOR 2 MINUS
+        IF(MOD(V_CONTADOR,2) == 0) THEN
+	   V_ACT_PLAYER := 2;
+	ELSE 
+	   V_ACT_PLAYER := 1;
+
+        DBMS_OUTPUT.PUT_LINE('------------------------------');
+        DBMS_OUTPUT.PUT_LINE('Fichas blancas (mayusculas): '||P_STARTER_PLAYER||'    --    '||'Fichas negras (minusculas): '||P_SECOND_PLAYER);
+        DBMS_OUTPUT.PUT_LINE('------------------------------');
+  	CHESS.BOARD_PQ01.INIT_BOARD;
+        CHESS.BOARD_PQ01.PRINT_TABLE;
+
+  
+        --DBMS_OUTPUT.PUT_LINE('Digite el valor de origen: '||V_CORD_SOURCE);
+  --DBMS_OUTPUT.PUT_LINE('Digite el valor de destino: '||P_CORD_TARGET);
+
+  	V_SOURCE_ROW := SUBSTR(V_CORD_SOURCE,2,1);
+        V_SOURCE_COLUMN := SUBSTR(V_CORD_SOURCE,1,1);
+        V_TARGET_ROW := SUBSTR(V_CORD_TARGET,2,1);
+        V_TARGET_COLUMN := SUBSTR(V_CORD_TARGET,1,1);
+
+  --Select para verificar si las coordenadas de origen y destino estan vacias o no
+  SELECT PIEZA INTO V_SOURCE_VALUE FROM BOARD WHERE FILA = V_SOURCE_ROW AND COLUMNA = V_SOURCE_COLUMN;
+  SELECT PIEZA INTO V_TARGET_VALUE FROM BOARD WHERE FILA = V_TARGET_ROW AND COLUMNA = V_TARGET_COLUMN;
+  
+  --Si el origen no es vacio y es valido para el jugador actual
+  --Si el destino esta vacio o no (verificar movimientos de cada tipo de pieza)
+  IF V_SOURCE_VALUE != ''  THEN
+     IF REGEXP_LIKE(V_SOURCE_VALUE,'[A-Z]') == TRUE AND V_ACT_PLAYER == 1 THEN
+	MOVE_PIECE(V_CORD_SOURCE,V_CORD_TARGET)	
+     ELSE
+	DBMS_OUTPUT.PUT_LINE('No puede seleccionar fichas del oponente 2.');	
+     IF REGEXP_LIKE(V_SOURCE_VALUE,'[a-z]') == TRUE AND V_ACT_PLAYER == 2 THEN
+	MOVE_PIECE(V_CORD_SOURCE,V_CORD_TARGET)	
+     ELSE
+	DBMS_OUTPUT.PUT_LINE('No puede seleccionar fichas del oponente 1.');
+  ELSE
+     DBMS_OUTPUT.PUT_LINE('No puede seleccionar espacios vacíos.');
+
+  V_CONTADOR := V_CONTADOR + 1;
+
+END GAME_DEVELOPMENT;
