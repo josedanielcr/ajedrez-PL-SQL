@@ -6,7 +6,10 @@ create or replace NONEDITIONABLE PACKAGE BODY BOARD_PQ01 IS
         
         
     BEGIN
-
+         UPDATE BOARD SET PIEZA=' ' WHERE FILA=3;
+         UPDATE BOARD SET PIEZA=' ' WHERE FILA=4;
+         UPDATE BOARD SET PIEZA=' ' WHERE FILA=5;
+         UPDATE BOARD SET PIEZA=' ' WHERE FILA=6;
         --PEONES
 
        UPDATE BOARD SET PIEZA='P' WHERE FILA=2; 
@@ -235,31 +238,31 @@ create or replace NONEDITIONABLE PACKAGE BODY BOARD_PQ01 IS
         SELECT PIEZA INTO H6 FROM BOARD WHERE COLUMNA='H' AND FILA=6;
         SELECT PIEZA INTO H7 FROM BOARD WHERE COLUMNA='H' AND FILA=7;
         SELECT PIEZA INTO H8 FROM BOARD WHERE COLUMNA='H' AND FILA=8;
-        		DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 8  |    '||A8||'    |    '||B8||'    |    '||C8||'    |    '||D8||'    |    '||E8||'    |    '||F8||'    |    '||G8||'    |    '||H8||'    |');
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 7  |    '||A7||'    |    '||B7||'    |    '||C7||'    |    '||D7||'    |    '||E7||'    |    '||F7||'    |    '||G7||'    |    '||H7||'    |');
+            DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
+            DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+			DBMS_OUTPUT.PUT_LINE('. 8  |    '||A8|| '    |    '||B8|| '    |    '||C8|| '    |    '||D8|| '    |    '||E8|| '    |    '||F8|| '    |    '||G8|| '    |    '||H8|| '    |    ');
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
 			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 6  |     '||A6||'    |       '||B6||'  |         '||C6||'|     '||D6||'    |       '||E6||'  |      '||F6||'   |     '||G6||'    |    '||H6||'     |');
+			DBMS_OUTPUT.PUT_LINE('. 7  |    '||A7|| '    |    '||B7|| '    |    '||C7|| '    |    '||D7|| '    |    '||E7|| '    |    '||F7|| '    |    '||G7|| '    |    '||H7|| '    |    ');
+            DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+            DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
+			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+			DBMS_OUTPUT.PUT_LINE('. 6  |    '||A6|| '    |    '||B6|| '    |    '||C6|| '    |    '||D6|| '    |    '||E6|| '    |    '||F6|| '    |    '||G6|| '    |    '||H6|| '    |    ');
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
 			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 5  |     '||A5||'    |       '||B5||'  |         '||C5||'|     '||D5||'    |       '||E5||'  |      '||F5||'   |     '||G5||'    |    '||H5||'     |');
+			DBMS_OUTPUT.PUT_LINE('. 5  |    '||A5|| '    |    '||B5|| '    |    '||C5|| '    |    '||D5|| '    |    '||E5|| '    |    '||F5|| '    |    '||G5|| '    |    '||H5|| '    |    ');
+            DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+            DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
+			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+			DBMS_OUTPUT.PUT_LINE('. 4  |    '||A4|| '    |    '||B4|| '    |    '||C4|| '    |    '||D4|| '    |    '||E4|| '    |    '||F4|| '    |    '||G4|| '    |    '||H4|| '    |    ');
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
 			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 4  |     '||A4||'    |       '||B4||'  |         '||C4||'|     '||D4||'    |       '||E4||'  |      '||F5||'   |     '||G4||'    |    '||H4||'     |');
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE('. 3  |     '||A3||'    |       '||B3||'  |         '||C3||'|     '||D3||'    |       '||E3||'  |      '||F3||'   |     '||G3||'    |    '||H3||'     |');
-			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
-			DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
+			DBMS_OUTPUT.PUT_LINE('. 3  |    '||A3|| '    |    '||B3|| '    |    '||C3|| '    |    '||D3|| '    |    '||E3|| '    |    '||F3|| '    |    '||G3|| '    |    '||H3|| '    |    ');
+            DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
+            DBMS_OUTPUT.PUT_LINE(rpad('.    -',86,'-'));
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
 			DBMS_OUTPUT.PUT_LINE('. 2  |    '||A2|| '    |    '||B2|| '    |    '||C2|| '    |    '||D2|| '    |    '||E2|| '    |    '||F2|| '    |    '||G2|| '    |    '||H2|| '    |    ');
 			DBMS_OUTPUT.PUT_LINE('.    |         |         |         |         |         |         |         |         |');
@@ -276,4 +279,3 @@ create or replace NONEDITIONABLE PACKAGE BODY BOARD_PQ01 IS
 
 
 END BOARD_PQ01;
-
