@@ -50,11 +50,11 @@ BEGIN
   --Si el origen no es vacio y es valido para el jugador actual
   --Si el destino esta vacio o no (verificar movimientos de cada tipo de pieza)
   IF V_SOURCE_VALUE != ''  THEN
-     IF REGEXP_LIKE(V_SOURCE_VALUE,'[A-Z]') == TRUE AND V_ACT_PLAYER == 1 THEN
+     IF REGEXP_LIKE(V_SOURCE_VALUE,'[A-Z]') = TRUE AND V_ACT_PLAYER = 1 THEN
 	MOVE_PIECE(V_CORD_SOURCE,V_CORD_TARGET)	
      ELSE
 	DBMS_OUTPUT.PUT_LINE('No puede seleccionar fichas del oponente 2.');	
-     IF REGEXP_LIKE(V_SOURCE_VALUE,'[a-z]') == TRUE AND V_ACT_PLAYER == 2 THEN
+     IF REGEXP_LIKE(V_SOURCE_VALUE,'[a-z]') = TRUE AND V_ACT_PLAYER = 2 THEN
 	MOVE_PIECE(V_CORD_SOURCE,V_CORD_TARGET)	
      ELSE
 	DBMS_OUTPUT.PUT_LINE('No puede seleccionar fichas del oponente 1.');
