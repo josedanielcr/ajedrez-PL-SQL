@@ -9,8 +9,8 @@ CREATE OR REPLACE PACKAGE GAME_PQ01 IS
     --jcanales 11/23/2021 (ends game)
     PROCEDURE END_GAME;
     
-    --jcanales 11/23/2021 (start process to move a piece)
-    PROCEDURE MOVE_PIECE(P_CORD_SOURCE VARCHAR2, P_CORD_TARGET VARCHAR2);
+    --jcanales 11/23/2021 (its a tie)
+    PROCEDURE TIE_GAME;
 
 END GAME_PQ01;
 /

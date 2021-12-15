@@ -15,8 +15,11 @@ CREATE OR REPLACE PACKAGE PLAYER_PQ01 IS
     --jcanales 11/13/2021 (Sets all players status to NON_PLAYING)
     PROCEDURE ALL_PLAYERS_NOT_PLAYING;
     
-     --jcanales 11/23/2021 (Sets all players status to NON_PLAYING)
+     --jcanales 11/23/2021 (Win)
     PROCEDURE ADD_WIN(P_PLAYER_ID NUMBER);
+    
+    --jcanales 11/23/2021 (loose)
+    PROCEDURE ADD_LOOSE(P_PLAYER_ID NUMBER);
 
 END PLAYER_PQ01;
 /
